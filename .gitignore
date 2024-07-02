@@ -1,0 +1,8 @@
+# Node modules
+node_modules/
+
+# dotenv environment variables file
+.env
+
+# VS Code files
+.vscode/
