@@ -52,7 +52,6 @@ exports.ProductListBySmilier = async (req, res) => {
 exports.ProductListByKeyword = async (req, res) => {
   let result = await ProductListByKeywordService(req);
   return res.status(200).json(result);
-  
 };
 
 
