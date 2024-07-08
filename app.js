@@ -1,6 +1,6 @@
 // Import dependencies
 const express = require("express");
-// const router = require("./src/routes/api");
+const router = require("./src/routes/api");
 
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -57,7 +57,7 @@ mongoose
   });
 
 // Use the router for your routes
-// app.use("/api", router);
+app.use("/api/v1", router);
 
 // Handle undefined routes
 app.use("*", (req, res) => {

@@ -4,8 +4,8 @@ const DataSchema = mongoose.Schema(
   {
     img1: { type: String, required: true },
     img2: { type: String, required: true },
-    img3: { type: String },
-    img4: { type: String },
+    img3: { type: String, required: true },
+    img4: { type: String, required: true },
     img5: { type: String },
     img6: { type: String },
     img7: { type: String },
@@ -18,5 +18,5 @@ const DataSchema = mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-const ProductDetailModel = mongoose.model("productDetails", DataSchema);
+const ProductDetailModel = mongoose.model("productdetails", DataSchema);
 module.exports = ProductDetailModel;
