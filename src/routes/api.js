@@ -1,6 +1,7 @@
 const express = require("express");
 const ProductController = require("../controllers/ProductController");
 const UserController = require("../controllers/UserController");
+const WishListController = require("../controllers/WishListController");
 const AuthVerification = require("../middlewares/AuthVerification");
 
 const router = express.Router();
@@ -24,5 +25,10 @@ router.get("/UserLogout", AuthVerification, UserController.UserLogout);
 router.post("/CreateProfile", AuthVerification, UserController.CreateProfile);
 router.post("/UpdateProfile", AuthVerification, UserController.UpdateProfile);
 router.get("/ReadProfile", AuthVerification, UserController.ReadProfile);
+
+// wishlist
+router.get("/WishList", AuthVerification, WishListController.WishList)
+router.post("/SaveWishList", AuthVerification, WishListController.SaveWishList)
+router.delete("/RemoveWishList", AuthVerification, WishListController.RemoveWishList)
 
 module.exports = router;
