@@ -1,8 +1,8 @@
 const BrandModel = require("../models/BrandModel");
 const CategoryModel = require("../models/CategoryModel");
 const ProductModel = require("../models/ProductModel");
-const ProductSliderModel = require("../models/ProductSliderModel");
 const ReviewModel = require("../models/ReviewModel");
+const ProductSliderModel = require("../models/ProductSliderModel");
 const mongoose = require("mongoose");
 
 
@@ -326,6 +326,33 @@ const ProductDetailsService = async (req) => {
   }
 };
 
+
+const CreateProductReviewService = async (req) => {
+  try {
+    const userId = req.headers.userId;
+    const reqBody = req.body;
+
+     // Validate the presence of userId in headers
+     if (!userId) {
+        return { status: "fail", message: "User ID is missing in headers" };
+      }
+
+    // Validate reqBody
+    if (!reqBody || Object.keys(reqBody).length === 0) {
+      return { status: "fail", message: "Request body is empty" };
+    }
+
+    reqBody.userID = userId;
+
+    // Upsert profile: create a new one if it doesn't exist, otherwise update the existing one
+    const data = await ReviewModel.create(reqBody);
+
+    return { status: "success", data: data };
+  } catch (error) {
+    return { status: "fail", message: error.message };
+  }
+};
+
 const ProductReviewListService = async (req) => {
   try {
     let ProductID = new ObjectId(req.params.ProductID);
@@ -371,4 +398,5 @@ module.exports = {
   ProductListByRemarkService,
   ProductDetailsService,
   ProductReviewListService,
+  CreateProductReviewService
 };

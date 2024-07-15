@@ -3,6 +3,7 @@ const ProductController = require("../controllers/ProductController");
 const UserController = require("../controllers/UserController");
 const WishListController = require("../controllers/WishListController");
 const CartListController = require("../controllers/CartListController");
+const FeatureController = require("../controllers/FeatureController");
 const InvoiceController = require("../controllers/InvoiceController");
 const AuthVerification = require("../middlewares/AuthVerification");
 
@@ -19,6 +20,7 @@ router.get("/ProductListBySmilier/:CategoryID", ProductController.ProductListByS
 router.get("/ProductListByKeyword/:Keyword", ProductController.ProductListByKeyword);
 router.get("/ProductDetails/:ProductID", ProductController.ProductDetails);
 router.get("/ProductReviewList/:ProductID", ProductController.ProductReviewList);
+router.post("/CreateProductReview", AuthVerification, ProductController.CreateProductReview);
 
 // user
 router.get("/UserOTP/:email", UserController.UserOTP);
@@ -48,6 +50,9 @@ router.get("/PaymentSuccess/:trxID", InvoiceController.PaymentSuccess)
 router.get("/PaymentCancel/:trxID", InvoiceController.PaymentCancel)
 router.get("/PaymentFail/:trxID", InvoiceController.PaymentFail)
 router.get("/PaymentIPN/:trxID", InvoiceController.PaymentIPN)
+
+// feature
+router.get("/FeatureList", FeatureController.FeatureList);
 
 
 module.exports = router;

@@ -9,6 +9,7 @@ const {
   ProductListByRemarkService,
   ProductDetailsService,
   ProductReviewListService,
+  CreateProductReviewService
 } = require("../services/ProductService");
 
 
@@ -31,7 +32,7 @@ exports.ProductSliderList = async (req, res) => {
 exports.ProductListByBrand = async (req, res) => {
   let result = await ProductListByBrandService(req);
   return res.status(200).json(result);
-};
+};  
 
 exports.ProductListByCategory = async (req, res) => {
   let result = await ProductListByCategoryService(req);
@@ -62,5 +63,10 @@ exports.ProductDetails = async (req, res) => {
 
 exports.ProductReviewList = async (req, res) => {
   let result = await ProductReviewListService(req);
+  return res.status(200).json(result);
+};
+
+exports.CreateProductReview = async (req, res) => {
+  let result = await CreateProductReviewService(req);
   return res.status(200).json(result);
 };
